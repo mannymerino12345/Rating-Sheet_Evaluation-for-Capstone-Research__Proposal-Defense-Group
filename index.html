@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evaluation for Capstone/Research Proposal Defense</title>
+    <style>
+        :root {
+            --dark: #222;
+            --line: #333;
+            --light: #f7f7f7;
+            --star: #d4a017;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: "Times New Roman", serif;
+            color: var(--dark);
+            background: #ffffff;
+        }
+
+        .toolbar {
+            width: 1100px;
+            max-width: 100%;
+            margin: 0 auto 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 14px;
+            border: 1px solid #bbb;
+            background: rgb(1, 198, 252);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #f3f3f3;
+        }
+
+        .status {
+            width: 1100px;
+            max-width: 100%;
+            margin: 0 auto 12px;
+            font-size: 14px;
+            min-height: 18px;
+            font-weight: bold;
+        }
+
+        .page {
+            width: 1100px;
+            max-width: 100%;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 22px 34px 30px;
+            background: #fff;
+        }
+
+        .header-image {
+            width: 100%;
+            display: block;
+        }
+
+        .footer-image {
+            width: 25%;
+            display: block;
+        }
+
+        .header-wrap {
+            margin-bottom: 16px;
+        }
+
+        .footer-wrap {
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin: 20px 0 20px;
+            letter-spacing: 0.4px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            margin-top: -6px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .info-row {
+            margin: 8px 0;
+            font-size: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            align-items: center;
+        }
+
+        .input-line {
+            border: none;
+            border-bottom: 1px solid #000;
+            min-width: 120px;
+            font: inherit;
+            background: transparent;
+            outline: none;
+            padding: 2px 4px;
+        }
+
+        .input-line.medium {
+            min-width: 180px;
+        }
+
+        .input-line.long {
+            min-width: 520px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .section-label {
+            margin: 18px 0 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 15px;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--line);
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--light);
+            text-align: center;
+        }
+
+        td.center {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .subhead {
+            font-weight: bold;
+            background: #fafafa;
+        }
+
+        .star-rating {
+            display: inline-flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 2px;
+            width: 100%;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            color: #cfcfcf;
+            user-select: none;
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover~label,
+        .star-rating input:checked~label {
+            color: var(--star);
+        }
+
+        .total-cell {
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .check-section {
+            margin-top: 18px;
+            font-size: 15px;
+        }
+
+        .checks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 30px;
+            margin-top: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tickbox {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            accent-color: #000;
+        }
+
+        .rated-by {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .signature-caption {
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .rates-table th,
+        .rates-table td {
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .rates-table td.wrap {
+            white-space: normal;
+            min-width: 220px;
+        }
+
+        .action-cell button {
+            min-width: 72px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .toolbar,
+            .status {
+                display: none;
+            }
+
+            .page {
+                width: 100%;
+                border: none;
+                padding: 12px 18px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar" id="formToolbar">
+        <button type="button" onclick="window.print()">Print Form</button>
+        <button type="button" onclick="fillSample()">Fill Sample Data</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+        <button type="button" onclick="goToViewAllRates()">View All Rates</button>
+    </div>
+
+    <div class="toolbar hidden" id="ratesToolbar">
+        <button type="button" onclick="goToFormPage()">Back to Form</button>
+        <button type="button" onclick="loadAllRates()">Refresh Rates</button>
+    </div>
+
+
+
+    <div class="page" id="formPage">
+        <div class="header-wrap">
+            <img src="header.png" alt="Header" class="header-image" />
+        </div>
+
+        <h1>EVALUATION FOR CAPSTONE/RESEARCH PROPOSAL DEFENSE</h1>
+
+        <div class="info-row">
+            <label>Evaluator: <input class="input-line medium" id="evaluator" type="text" required /></label>
+            <label>Time: <input class="input-line" id="time" type="text" readonly required /></label>
+            <label>Date: <input class="input-line" id="date" type="date" readonly required /></label>
+            <label>Signature: <input class="input-line" id="signature" type="text" required /></label>
+        </div>
+
+        <div class="info-row">
+            <label style="width:100%;">Research/Capstone Project Proposal Title:
+                <input class="input-line long" id="title" type="text" required />
+            </label>
+        </div>
+
+        <div class="section-label">CRITERIA FOR EVALUATION</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 60%;">Criteria</th>
+                    <th style="width: 20%;">Rating Range</th>
+                    <th style="width: 20%;">Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>A. TITLE</strong> (Title is relevant/appropriate to the program of study)</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-title"></td>
+                </tr>
+
+                <tr>
+                    <td class="subhead" colspan="3">B. INTRODUCTION</td>
+                </tr>
+                <tr>
+                    <td>1. Project Context</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-project-context"></td>
+                </tr>
+                <tr>
+                    <td>2. Purpose and Description of the Project</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-purpose-description"></td>
+                </tr>
+                <tr>
+                    <td>3. Objectives of the Project</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-objectives"></td>
+                </tr>
+                <tr>
+                    <td>4. Scope and limitations are well-defined</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-scope-limitations"></td>
+                </tr>
+
+                <tr>
+                    <td><strong>C. REVIEW OF RELATED LITERATURE</strong> (Included sufficient information on previous
+                        studies related to the Capstone Proposal)</td>
+                    <td class="center">1 - 15</td>
+                    <td class="center" id="rating-review-literature"></td>
+                </tr>
+
+                <tr>
+                    <td class="subhead" colspan="3">D. TECHNICAL BACKGROUND (Methods proposed are realistic and show
+                        indications that set objectives are achievable / have been achieved)</td>
+                </tr>
+                <tr>
+                    <td>1. The technicality of the project</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-technicality"></td>
+                </tr>
+                <tr>
+                    <td>2. Details of the Technologies to be used</td>
+                    <td class="center">1 - 5</td>
+                    <td class="center" id="rating-technologies"></td>
+                </tr>
+                <tr>
+                    <td>3. Proposed Project Plan</td>
+                    <td class="center">1 - 10</td>
+                    <td class="center" id="rating-project-plan"></td>
+                </tr>
+
+                <tr>
+                    <td class="subhead" colspan="3">E. ORAL PRESENTATION</td>
+                </tr>
+                <tr>
+                    <td>1. Shows mastery of the topic</td>
+                    <td class="center">1 - 10</td>
+                    <td class="center" id="rating-mastery"></td>
+                </tr>
+                <tr>
+                    <td>2. Able to answer clearly all questions raised by the panel members</td>
+                    <td class="center">1 - 10</td>
+                    <td class="center" id="rating-questions"></td>
+                </tr>
+                <tr>
+                    <td>3. Presents well all visual aids and other relevant materials</td>
+                    <td class="center">1 - 10</td>
+                    <td class="center" id="rating-visual-aids"></td>
+                </tr>
+                <tr>
+                    <td>4. Effectively communicates the topic to the audience</td>
+                    <td class="center">1 - 10</td>
+                    <td class="center" id="rating-communication"></td>
+                </tr>
+
+                <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td></td>
+                    <td class="total-cell" id="totalScore">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="check-section">
+            <div><strong>Please tick the appropriate blank:</strong></div>
+            <div class="checks">
+                <label class="check-item"><input class="tickbox" type="checkbox" id="approved-no-revisions" /> Approved
+                    with no revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="approved-minor-revisions" />
+                    Approved with minor revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="approved-major-revisions" />
+                    Approved with major revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="disapproved" /> Disapproved</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="re-defense" /> Re-defense</label>
+            </div>
+        </div>
+
+        <div class="rated-by">
+            <div><strong>RATED BY:</strong></div>
+            <div style="margin-top: 18px;">
+                <input class="input-line medium" id="srcMember" type="text" placeholder="SRC MEMBER Name" required />
+            </div>
+
+            <div class="signature-caption">(Signature over printed name/date)</div>
+
+            <div style="margin-top: 16px;">
+                <div class="status" id="status"></div>
+                <button type="button" onclick="submitToGoogleSheet()"
+                    style="background-color: #4CAF50; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer;">
+                    SAVE DATA
+                </button>
+            </div>
+        </div>
+
+        <div class="footer-wrap">
+            <img src="footer.png" alt="Footer" class="footer-image" />
+        </div>
+    </div>
+
+    <div class="page hidden" id="ratesPage">
+        <div class="header-wrap">
+            <img src="header.png" alt="Header" class="header-image" />
+        </div>
+
+        <h1>ALL CAPSTONE/RESEARCH EVALUATION RATES</h1>
+        <div class="page-subtitle">Saved rows from </div>
+
+        <div class="table-wrap">
+            <table class="rates-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Evaluator</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th>Signature</th>
+                        <th>SRC Member</th>
+                        <th>Title</th>
+                        <th>Total Score</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ratesTableBody">
+                    <tr>
+                        <td colspan="10" class="center">No data loaded yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer-wrap">
+            <img src="footer.png" alt="Footer" class="footer-image" />
+        </div>
+    </div>
+
+    <div class="page hidden" id="detailsPage">
+        <div class="header-wrap">
+            <img src="header.png" alt="Header" class="header-image" />
+        </div>
+
+        <h1>EVALUATION FOR CAPSTONE/RESEARCH PROPOSAL DEFENSE</h1>
+        <div class="page-subtitle">Saved evaluation details</div>
+
+        <div class="info-row">
+            <label>Evaluator: <input class="input-line medium" id="detailEvaluator" type="text" readonly /></label>
+            <label>Time: <input class="input-line" id="detailTime" type="text" readonly /></label>
+            <label>Date: <input class="input-line" id="detailDate" type="date" readonly /></label>
+            <label>Signature: <input class="input-line" id="detailSignature" type="text" readonly /></label>
+        </div>
+
+        <div class="info-row">
+            <label style="width:100%;">Research/Capstone Project Proposal Title:
+                <input class="input-line long" id="detailTitle" type="text" readonly />
+            </label>
+        </div>
+
+        <div class="section-label">CRITERIA FOR EVALUATION</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 60%;">Criteria</th>
+                    <th style="width: 20%;">Rating Range</th>
+                    <th style="width: 20%;">Rating</th>
+                </tr>
+            </thead>
+            <tbody id="detailRatingsBody"></tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>TOTAL</strong></td>
+                    <td></td>
+                    <td class="total-cell" id="detailTotalScore">0</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="check-section">
+            <div><strong>Please tick the appropriate blank:</strong></div>
+            <div class="checks">
+                <label class="check-item"><input class="tickbox" type="checkbox" id="detail-approved-no-revisions"
+                        disabled /> Approved with no revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="detail-approved-minor-revisions"
+                        disabled /> Approved with minor revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="detail-approved-major-revisions"
+                        disabled /> Approved with major revisions</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="detail-disapproved" disabled />
+                    Disapproved</label>
+                <label class="check-item"><input class="tickbox" type="checkbox" id="detail-re-defense" disabled />
+                    Re-defense</label>
+            </div>
+        </div>
+
+        <div class="rated-by">
+            <div><strong>RATED BY:</strong></div>
+            <div style="margin-top: 18px;">
+                <input class="input-line medium" id="detailSrcMember" type="text" readonly />
+            </div>
+
+            <div class="signature-caption">(Signature over printed name/date)</div>
+        </div>
+
+        <div class="footer-wrap">
+            <img src="footer.png" alt="Footer" class="footer-image" />
+        </div>
+    </div>
+
+    <script>
+        const GOOGLE_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxE0ANuQaZVtPj4xGhsDcnj8IwxX-B5LPED2dCVcOgGF-oJ20E14H_0_AB-BKNG2ha20Q/exec';
+        let allRatesCache = [];
+
+        const criteria = [
+            { key: 'title', label: 'A. TITLE', max: 5 },
+            { key: 'project-context', label: 'B1. Project Context', max: 5 },
+            { key: 'purpose-description', label: 'B2. Purpose and Description of the Project', max: 5 },
+            { key: 'objectives', label: 'B3. Objectives of the Project', max: 5 },
+            { key: 'scope-limitations', label: 'B4. Scope and limitations are well-defined', max: 5 },
+            { key: 'review-literature', label: 'C. REVIEW OF RELATED LITERATURE', max: 15 },
+            { key: 'technicality', label: 'D1. The technicality of the project', max: 5 },
+            { key: 'technologies', label: 'D2. Details of the Technologies to be used', max: 5 },
+            { key: 'project-plan', label: 'D3. Proposed Project Plan', max: 10 },
+            { key: 'mastery', label: 'E1. Shows mastery of the topic', max: 10 },
+            { key: 'questions', label: 'E2. Able to answer clearly all questions raised by the panel members', max: 10 },
+            { key: 'visual-aids', label: 'E3. Presents well all visual aids and other relevant materials', max: 10 },
+            { key: 'communication', label: 'E4. Effectively communicates the topic to the audience', max: 10 }
+        ];
+
+        function formatCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+        }
+
+        function formatCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function autoFillDateTime() {
+            const timeInput = document.getElementById('time');
+            const dateInput = document.getElementById('date');
+
+            if (timeInput) timeInput.value = formatCurrentTime();
+            if (dateInput) dateInput.value = formatCurrentDate();
+        }
+
+        function createStarRating(key, max) {
+            let html = '<div class="star-rating">';
+            for (let value = max; value >= 1; value--) {
+                const inputId = `${key}-${value}`;
+                html += `
+          <input type="radio" name="${key}" id="${inputId}" value="${value}" onchange="updateTotal()">
+          <label for="${inputId}" title="${value} star${value > 1 ? 's' : ''}">&#9733;</label>
+        `;
+            }
+            html += '</div>';
+            return html;
+        }
+
+        function mountRatings() {
+            criteria.forEach(item => {
+                const cell = document.getElementById(`rating-${item.key}`);
+                if (cell) cell.innerHTML = createStarRating(item.key, item.max);
+            });
+        }
+
+        function getSelectedRating(key) {
+            const selected = document.querySelector(`input[name="${key}"]:checked`);
+            return selected ? Number(selected.value) : 0;
+        }
+
+        function updateTotal() {
+            const total = criteria.reduce((sum, item) => sum + getSelectedRating(item.key), 0);
+            document.getElementById('totalScore').textContent = total;
+        }
+
+        function getDecisionData() {
+            return {
+                approvedNoRevisions: document.getElementById('approved-no-revisions').checked,
+                approvedMinorRevisions: document.getElementById('approved-minor-revisions').checked,
+                approvedMajorRevisions: document.getElementById('approved-major-revisions').checked,
+                disapproved: document.getElementById('disapproved').checked,
+                reDefense: document.getElementById('re-defense').checked
+            };
+        }
+
+        function hasSelectedDecision() {
+            const decision = getDecisionData();
+            return Object.values(decision).some(value => value);
+        }
+
+        function getRatingsJson() {
+            const ratings = {};
+            criteria.forEach(item => {
+                ratings[item.key] = {
+                    label: item.label,
+                    score: getSelectedRating(item.key),
+                    max: item.max
+                };
+            });
+            return ratings;
+        }
+
+        function validateForm() {
+            const missingFields = [];
+
+            const evaluator = document.getElementById('evaluator').value.trim();
+            const time = document.getElementById('time').value.trim();
+            const date = document.getElementById('date').value.trim();
+            const signature = document.getElementById('signature').value.trim();
+            const srcMember = document.getElementById('srcMember').value.trim();
+            const title = document.getElementById('title').value.trim();
+
+            if (!evaluator) missingFields.push('Evaluator');
+            if (!time) missingFields.push('Time');
+            if (!date) missingFields.push('Date');
+            if (!signature) missingFields.push('Signature');
+            if (!title) missingFields.push('Research/Capstone Project Proposal Title');
+            if (!srcMember) missingFields.push('SRC Member');
+
+            const unratedCriteria = criteria.filter(item => getSelectedRating(item.key) === 0);
+            if (unratedCriteria.length > 0) {
+                missingFields.push('All rating fields must be selected');
+            }
+
+            if (!hasSelectedDecision()) {
+                missingFields.push('Please tick at least one decision checkbox');
+            }
+
+            return {
+                valid: missingFields.length === 0,
+                missingFields
+            };
+        }
+
+        function getFormPayload() {
+            return {
+                evaluator: document.getElementById('evaluator').value.trim(),
+                time: document.getElementById('time').value.trim(),
+                date: document.getElementById('date').value,
+                signature: document.getElementById('signature').value.trim(),
+                srcMember: document.getElementById('srcMember').value.trim(),
+                title: document.getElementById('title').value.trim(),
+                totalScore: Number(document.getElementById('totalScore').textContent || 0),
+                decision: getDecisionData(),
+                ratingsJson: JSON.stringify(getRatingsJson()),
+                createdAt: new Date().toISOString()
+            };
+        }
+
+        async function submitToGoogleSheet() {
+            const status = document.getElementById('status');
+            const validation = validateForm();
+
+            if (!validation.valid) {
+                status.style.color = 'red';
+                status.textContent = 'Cannot save. Missing required input(s): ' + validation.missingFields.join(', ');
+                return;
+            }
+
+            const payload = getFormPayload();
+            status.textContent = 'Saving DATA ...';
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+
+                const text = await response.text();
+                let result = null;
+                try { result = JSON.parse(text); } catch (e) { }
+
+                if (response.ok && result && result.success) {
+                    status.style.color = 'green';
+                    status.textContent = 'Successfully saved .';
+                } else {
+                    status.style.color = 'red';
+                    status.textContent = 'Failed to save: ' + (result?.message || text || 'Unknown error');
+                }
+            } catch (error) {
+                status.style.color = 'red';
+                status.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('evaluator').value = '';
+            document.getElementById('signature').value = '';
+            document.getElementById('srcMember').value = '';
+            document.getElementById('title').value = '';
+            document.getElementById('status').textContent = '';
+
+            criteria.forEach(item => {
+                const checked = document.querySelector(`input[name="${item.key}"]:checked`);
+                if (checked) checked.checked = false;
+            });
+
+            ['approved-no-revisions', 'approved-minor-revisions', 'approved-major-revisions', 'disapproved', 're-defense'].forEach(id => {
+                document.getElementById(id).checked = false;
+            });
+
+            autoFillDateTime();
+            updateTotal();
+        }
+
+        function fillSample() {
+            document.getElementById('evaluator').value = 'Dr. Juan Dela Cruz';
+            document.getElementById('signature').value = 'Signed';
+            document.getElementById('srcMember').value = 'Prof. Maria Santos';
+            document.getElementById('title').value = 'Smart Attendance Monitoring System';
+            autoFillDateTime();
+
+            const sampleRatings = {
+                'title': 5,
+                'project-context': 4,
+                'purpose-description': 5,
+                'objectives': 4,
+                'scope-limitations': 4,
+                'review-literature': 12,
+                'technicality': 5,
+                'technologies': 4,
+                'project-plan': 8,
+                'mastery': 9,
+                'questions': 8,
+                'visual-aids': 9,
+                'communication': 9
+            };
+
+            Object.entries(sampleRatings).forEach(([key, value]) => {
+                const radio = document.getElementById(`${key}-${value}`);
+                if (radio) radio.checked = true;
+            });
+
+            document.getElementById('approved-minor-revisions').checked = true;
+            updateTotal();
+        }
+
+        function goToViewAllRates() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', 'rates');
+            window.location.href = url.toString();
+        }
+
+        function goToFormPage() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', 'form');
+            url.searchParams.delete('index');
+            window.location.href = url.toString();
+        }
+
+        function showFormPage() {
+            document.getElementById('formPage').classList.remove('hidden');
+            document.getElementById('formToolbar').classList.remove('hidden');
+            document.getElementById('ratesPage').classList.add('hidden');
+            document.getElementById('ratesToolbar').classList.add('hidden');
+            document.getElementById('detailsPage').classList.add('hidden');
+        }
+
+        function showRatesPage() {
+            document.getElementById('formPage').classList.add('hidden');
+            document.getElementById('formToolbar').classList.add('hidden');
+            document.getElementById('ratesPage').classList.remove('hidden');
+            document.getElementById('ratesToolbar').classList.remove('hidden');
+            document.getElementById('detailsPage').classList.add('hidden');
+        }
+
+        function showDetailsPage() {
+            document.getElementById('formPage').classList.add('hidden');
+            document.getElementById('formToolbar').classList.add('hidden');
+            document.getElementById('ratesPage').classList.add('hidden');
+            document.getElementById('ratesToolbar').classList.remove('hidden');
+            document.getElementById('detailsPage').classList.remove('hidden');
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        async function loadAllRates() {
+            const status = document.getElementById('status');
+            const tbody = document.getElementById('ratesTableBody');
+            status.textContent = 'Loading all rates  ...';
+            tbody.innerHTML = '<tr><td colspan="10" class="center">Loading...</td></tr>';
+
+            try {
+                const response = await fetch(`${GOOGLE_SCRIPT_WEB_APP_URL}?action=getAllRates`);
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Unable to load rates.');
+                }
+
+                const rows = Array.isArray(result.data) ? result.data : [];
+                allRatesCache = rows;
+
+                if (!rows.length) {
+                    tbody.innerHTML = '<tr><td colspan="10" class="center">No saved rates found.</td></tr>';
+                    status.textContent = 'No saved rates found.';
+                    return rows;
+                }
+
+                tbody.innerHTML = rows.map((row, index) => `
+          <tr>
+            <td class="center">${index + 1}</td>
+            <td>${escapeHtml(row.evaluator)}</td>
+            <td>${escapeHtml(row.time)}</td>
+            <td>${escapeHtml(row.date)}</td>
+            <td>${escapeHtml(row.signature)}</td>
+            <td>${escapeHtml(row.srcMember)}</td>
+            <td class="wrap">${escapeHtml(row.title)}</td>
+            <td class="center">${escapeHtml(row.totalScore)}</td>
+            <td>${escapeHtml(row.createdAt)}</td>
+            <td class="center action-cell"><button type="button" onclick="viewRateDetails(${index})">View</button></td>
+          </tr>
+        `).join('');
+
+                status.textContent = `Loaded ${rows.length} saved rate(s).`;
+                return rows;
+            } catch (error) {
+                tbody.innerHTML = `<tr><td colspan="10" class="center">${escapeHtml(error.message)}</td></tr>`;
+                status.textContent = `Error: ${error.message}`;
+                return [];
+            }
+        }
+
+        function parseSafeJson(value, fallback = {}) {
+            try {
+                if (!value) return fallback;
+                return typeof value === 'string' ? JSON.parse(value) : value;
+            } catch (error) {
+                return fallback;
+            }
+        }
+
+        function buildDetailRatingsTable(ratings) {
+            const body = document.getElementById('detailRatingsBody');
+            const order = [
+                { key: 'title', label: 'A. TITLE', description: '(Title is relevant/appropriate to the program of study)' },
+                { section: 'B. INTRODUCTION', type: 'section' },
+                { key: 'project-context', label: '1. Project Context' },
+                { key: 'purpose-description', label: '2. Purpose and Description of the Project' },
+                { key: 'objectives', label: '3. Objectives of the Project' },
+                { key: 'scope-limitations', label: '4. Scope and limitations are well-defined' },
+                { key: 'review-literature', label: 'C. REVIEW OF RELATED LITERATURE', description: '(Included sufficient information on previous studies related to the Capstone Proposal)' },
+                { section: 'D. TECHNICAL BACKGROUND (Methods proposed are realistic and show indications that set objectives are achievable / have been achieved)', type: 'section' },
+                { key: 'technicality', label: '1. The technicality of the project' },
+                { key: 'technologies', label: '2. Details of the Technologies to be used' },
+                { key: 'project-plan', label: '3. Proposed Project Plan' },
+                { section: 'E. ORAL PRESENTATION', type: 'section' },
+                { key: 'mastery', label: '1. Shows mastery of the topic' },
+                { key: 'questions', label: '2. Able to answer clearly all questions raised by the panel members' },
+                { key: 'visual-aids', label: '3. Presents well all visual aids and other relevant materials' },
+                { key: 'communication', label: '4. Effectively communicates the topic to the audience' }
+            ];
+
+            body.innerHTML = order.map(item => {
+                if (item.type === 'section') {
+                    return `<tr><td class="subhead" colspan="3">${escapeHtml(item.section)}</td></tr>`;
+                }
+                const rating = ratings[item.key] || {};
+                const text = item.description ? `<strong>${escapeHtml(item.label)}</strong> ${escapeHtml(item.description)}` : escapeHtml(item.label);
+                const range = rating.max ? `1 - ${escapeHtml(rating.max)}` : '';
+                const score = rating.score ?? '';
+                return `<tr><td>${text}</td><td class="center">${range}</td><td class="center">${escapeHtml(score)}</td></tr>`;
+            }).join('');
+        }
+
+        function fillDetailPage(row) {
+            document.getElementById('detailEvaluator').value = row.evaluator || '';
+            document.getElementById('detailTime').value = row.time || '';
+            document.getElementById('detailDate').value = row.date || '';
+            document.getElementById('detailSignature').value = row.signature || '';
+            document.getElementById('detailSrcMember').value = row.srcMember || '';
+            document.getElementById('detailTitle').value = row.title || '';
+            document.getElementById('detailTotalScore').textContent = row.totalScore || 0;
+
+            const decision = parseSafeJson(row.decision, {});
+            document.getElementById('detail-approved-no-revisions').checked = !!decision.approvedNoRevisions;
+            document.getElementById('detail-approved-minor-revisions').checked = !!decision.approvedMinorRevisions;
+            document.getElementById('detail-approved-major-revisions').checked = !!decision.approvedMajorRevisions;
+            document.getElementById('detail-disapproved').checked = !!decision.disapproved;
+            document.getElementById('detail-re-defense').checked = !!decision.reDefense;
+
+            const ratings = parseSafeJson(row.ratingsJson, {});
+            buildDetailRatingsTable(ratings);
+        }
+
+        function viewRateDetails(index) {
+            const row = allRatesCache[index];
+            if (!row) {
+                document.getElementById('status').textContent = 'Unable to open rate details.';
+                return;
+            }
+            const url = new URL(window.location.href);
+            url.searchParams.set('page', 'details');
+            url.searchParams.set('index', index);
+            window.location.href = url.toString();
+        }
+
+        function initializePage() {
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get('page');
+            const index = Number(params.get('index'));
+
+            if (page === 'rates') {
+                showRatesPage();
+                loadAllRates();
+            } else if (page === 'details') {
+                showDetailsPage();
+                loadAllRates().then(() => {
+                    if (Number.isInteger(index) && allRatesCache[index]) {
+                        fillDetailPage(allRatesCache[index]);
+                        document.getElementById('status').textContent = `Viewing saved rate #${index + 1}.`;
+                    } else {
+                        document.getElementById('status').textContent = 'Saved rate details not found.';
+                    }
+                });
+            } else {
+                showFormPage();
+                autoFillDateTime();
+            }
+        }
+
+        mountRatings();
+        updateTotal();
+        initializePage();
+    </script>
+</body>
+
+</html>
