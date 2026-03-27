@@ -148,6 +148,16 @@
             max-width: 100%;
         }
 
+        select.input-line {
+            border: none;
+            border-bottom: 1px solid #000;
+            width: 100%;
+            font: inherit;
+            background: transparent;
+            outline: none;
+            padding: 4px;
+        }
+
         .section-label {
             margin: 18px 0 8px;
             font-size: 15px;
@@ -393,7 +403,7 @@
         <button type="button" onclick="loadAllRates()">Refresh Rates</button>
     </div>
 
-   
+    <div class="status" id="status"></div>
 
     <div class="page" id="formPage">
         <div class="header-wrap">
@@ -419,7 +429,12 @@
 
         <div class="info-row">
             <label style="width:100%;">Research/Capstone Project Proposal Title:
-                <input class="input-line long" id="title" type="text" required />
+                <select class="input-line long" id="title" required>
+                    <option value="">-- Select Project Title --</option>
+                    <option value="Smart Attendance Monitoring System">Smart Attendance Monitoring System</option>
+                    <option value="AI-Powered Academic Assistant">AI-Powered Academic Assistant</option>
+                    <option value="SLSU Campus Navigation System">SLSU Campus Navigation System</option>
+                </select>
             </label>
         </div>
 
@@ -544,9 +559,8 @@
             </div>
 
             <div class="signature-caption">(Signature over printed name/date)</div>
-                <div class="status" id="status"></div>
+
             <div style="margin-top: 16px;">
-                 
                 <button type="button" id="saveBtn" onclick="submitToGoogleSheet()"
                     style="background-color: #4CAF50; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer;">
                     SAVE DATA
@@ -856,7 +870,7 @@
                 });
 
                 status.style.color = 'green';
-                status.textContent = 'Data submitted successfully.';
+                status.textContent = 'Data submitted successfully. Please check the Google Sheet.';
 
                 setTimeout(() => {
                     clearForm();
