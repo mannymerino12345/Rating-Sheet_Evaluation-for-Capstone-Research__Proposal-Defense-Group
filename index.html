@@ -403,7 +403,7 @@
         <button type="button" onclick="loadAllRates()">Refresh Rates</button>
     </div>
 
-    <div class="status" id="status"></div>
+    
 
     <div class="page" id="formPage">
         <div class="header-wrap">
@@ -565,7 +565,7 @@ with Voice-Based Interview Simulation
             </div>
 
             <div class="signature-caption">(Signature over printed name/date)</div>
-
+<div class="status" id="status"></div>
             <div style="margin-top: 16px;">
                 <button type="button" id="saveBtn" onclick="submitToGoogleSheet()"
                     style="background-color: #4CAF50; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer;">
@@ -876,7 +876,7 @@ with Voice-Based Interview Simulation
                 });
 
                 status.style.color = 'green';
-                status.textContent = 'Data submitted successfully. Please check the Google Sheet.';
+                status.textContent = 'Data submitted successfully. .';
 
                 setTimeout(() => {
                     clearForm();
